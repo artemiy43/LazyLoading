@@ -18,7 +18,7 @@ const App = observer(() => {
           setFetching(false);
         });
     }
-  }, [fetching]);
+  }, [fetching, from]);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -27,10 +27,11 @@ const App = observer(() => {
     };
   }, []);
 
-  const scrollHandler = (e) => {
+  const scrollHandler = (e: Event) => {
     if (
-      e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <
+      (e.target as Document).documentElement.scrollHeight -
+        ((e.target as Document).documentElement.scrollTop +
+          window.innerHeight) <
       100
     ) {
       setFetching(true);

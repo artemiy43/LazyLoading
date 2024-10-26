@@ -2,7 +2,9 @@ import { makeAutoObservable } from "mobx";
 
 export interface Item {
   id: number;
-  name: string;
+  package: {
+    name: string;
+  };
 }
 
 class UseItemStore {
