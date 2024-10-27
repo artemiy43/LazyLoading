@@ -3,15 +3,18 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  min-width: 320px;
+  box-sizing: border-box;
 }
 
 .itemList {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 40px;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .item {
@@ -20,3 +23,46 @@
   border: 1px solid black;
   border-radius: 10px;
 }
+
+/* {itemStore.items.map((el, index) => {
+          return (
+            <li className="item" key={index}>
+              {el.package.name + " " + index}
+            </li>
+          );
+        })} */
+/* </List> */
+
+/* <Input
+          defaultValue={itemStore.items[currentCardId]?.package.version || ""}
+          onChange={(e) =>
+            itemStore.editVersion(
+              e.target.value,
+              itemStore.items[currentCardId].id
+            )
+          }
+        />
+
+        <Input
+          defaultValue={
+            itemStore.items[currentCardId]?.package.description || ""
+          }
+          onChange={(e) =>
+            itemStore.editDescription(
+              e.target.value,
+              itemStore.items[currentCardId].id
+            )
+          }
+        />
+
+        <Input
+          defaultValue={
+            itemStore.items[currentCardId]?.package.links.homepage || ""
+          }
+          onChange={(e) =>
+            itemStore.editHomepage(
+              e.target.value,
+              itemStore.items[currentCardId].id
+            )
+          }
+        /> */
