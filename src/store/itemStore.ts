@@ -43,7 +43,17 @@ class UseItemStore {
   //     item!.package.links.homepage = homepage;
   //   }
 
-  editItem({ homepage, version, description, id }) {
+  editItem({
+    homepage,
+    version,
+    description,
+    id,
+  }: {
+    homepage: string;
+    version: string;
+    description: string;
+    id: number;
+  }) {
     console.log(id);
     const item = this.items.find((el) => el.id === id);
     item!.package.links.homepage = homepage;

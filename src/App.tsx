@@ -36,7 +36,12 @@ const App = observer(() => {
     homepage?: string;
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: {
+    homepage: string;
+    version: string;
+    description: string;
+    id: number;
+  }) => {
     console.log("Success:", values);
     itemStore.editItem({ ...values, id: currentCardId });
     console.log({ ...values, id: currentCardId });
