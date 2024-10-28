@@ -8,6 +8,7 @@ import { modify } from "./utils/helpers";
 import "./App.css";
 
 const App = observer(() => {
+  const [form] = Form.useForm();
   const [from, setFrom] = useState(0);
   const [fetching, setFetching] = useState(true);
   const [spinning, setSpinning] = useState(false);
@@ -76,6 +77,17 @@ const App = observer(() => {
     };
   }, []);
 
+  useEffect(() => {
+    form.setFieldsValue({
+      version: itemStore.items.find((el) => el.id === currentCardId)?.package
+        .version,
+      description: itemStore.items.find((el) => el.id === currentCardId)
+        ?.package.description,
+      homepage: itemStore.items.find((el) => el.id === currentCardId)?.package
+        .links.homepage,
+    });
+  }, [currentCardId, form]);
+
   const scrollHandler = (e: Event) => {
     if (
       (e.target as Document).documentElement.scrollHeight -
@@ -134,6 +146,7 @@ const App = observer(() => {
         onCancel={handleCancel}
       >
         <Form
+          form={form}
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
@@ -142,36 +155,15 @@ const App = observer(() => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item<FieldType>
-            label="Version"
-            name="version"
-            initialValue={
-              itemStore.items.find((el) => el.id === currentCardId)?.package
-                .version
-            }
-          >
+          <Form.Item<FieldType> label="Version" name="version">
             <Input />
           </Form.Item>
 
-          <Form.Item<FieldType>
-            label="Description"
-            name="description"
-            initialValue={
-              itemStore.items.find((el) => el.id === currentCardId)?.package
-                .description
-            }
-          >
+          <Form.Item<FieldType> label="Description" name="description">
             <Input />
           </Form.Item>
 
-          <Form.Item<FieldType>
-            label="Homepage"
-            name="homepage"
-            initialValue={
-              itemStore.items.find((el) => el.id === currentCardId)?.package
-                .links.homepage
-            }
-          >
+          <Form.Item<FieldType> label="Homepage" name="homepage">
             <Input />
           </Form.Item>
 
