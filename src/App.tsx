@@ -106,9 +106,7 @@ const App = observer(() => {
                   key="edit"
                   onClick={() => {
                     handleCardClick(item.id);
-                    //console.log(item.id);
                     console.log(currentCardId);
-                    //setDisabling(!disabling);
                     showModal();
                   }}
                 />,
@@ -120,7 +118,7 @@ const App = observer(() => {
               <p>
                 Homepage:
                 <br />
-                <a href={item.package.links.homepage}>
+                <a href={item.package.links.homepage} target="_blank">
                   {item.package.links.homepage}
                 </a>
               </p>
@@ -144,15 +142,36 @@ const App = observer(() => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item<FieldType> label="Version" name="version">
+          <Form.Item<FieldType>
+            label="Version"
+            name="version"
+            initialValue={
+              itemStore.items.find((el) => el.id === currentCardId)?.package
+                .version
+            }
+          >
             <Input />
           </Form.Item>
 
-          <Form.Item<FieldType> label="Description" name="description">
+          <Form.Item<FieldType>
+            label="Description"
+            name="description"
+            initialValue={
+              itemStore.items.find((el) => el.id === currentCardId)?.package
+                .description
+            }
+          >
             <Input />
           </Form.Item>
 
-          <Form.Item<FieldType> label="Homepage" name="homepage">
+          <Form.Item<FieldType>
+            label="Homepage"
+            name="homepage"
+            initialValue={
+              itemStore.items.find((el) => el.id === currentCardId)?.package
+                .links.homepage
+            }
+          >
             <Input />
           </Form.Item>
 
